@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Question 💗</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Georgia, serif;
+      background:
+        radial-gradient(circle at top, #ffdce9, transparent 45%),
+        linear-gradient(135deg, #fff0f5, #ffd1df);
+      overflow: hidden;
+      color: #6b3049;
+    }
+
+    .card {
+      width: min(90%, 480px);
+      padding: 45px 30px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(130, 50, 80, 0.18);
+      backdrop-filter: blur(12px);
+    }
+
+    .heart {
+      font-size: 55px;
+      animation: float 2.5s ease-in-out infinite;
+    }
+
+    h1 {
+      margin: 15px 0 12px;
+      font-size: 32px;
+      font-weight: normal;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin: 0 auto 28px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 13px 28px;
+      border-radius: 999px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.25s;
+      font-family: inherit;
+    }
+
+    #yes {
+      background: #e987aa;
+      color: white;
+      box-shadow: 0 7px 18px rgba(200, 80, 120, 0.25);
+    }
+
+    #yes:hover {
+      transform: translateY(-3px) scale(1.04);
+      background: #df7199;
+    }
+
+    #no {
+      background: #fff;
+      color: #9a5870;
+      border: 1px solid #efc2d2;
+    }
+
+    #no:hover {
+      transform: translateY(-3px);
+    }
+
+    #answer {
+      display: none;
+      margin-top: 25px;
+      font-size: 21px;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 20px;
+      opacity: 0.5;
+      animation: rise 7s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(0);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.5;
+      }
+
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="heart">♡</div>
+
+    <h1>I have a little question...</h1>
+
+    <p>
+      There's something I've been wanting to ask you.<br><br>
+      Would you be my soulmate? 💗
+    </p>
+
+    <div class="buttons">
+      <button id="yes" onclick="sayYes()">Yes ♡</button>
+      <button id="no" onclick="sayNo()">No</button>
+    </div>
+
+    <div id="answer"></div>
+  </div>
+
+  <script>
+    function sayYes() {
+      document.getElementById("answer").style.display = "block";
+      document.getElementById("answer").innerHTML =
+        "You just made my heart very happy. ♡";
+    }
+
+    function sayNo() {
+      document.getElementById("answer").style.display = "block";
+      document.getElementById("answer").innerHTML =
+        "That's okay. Thank you for being honest. ♡";
+    }
+
+    // Floating hearts
+    const hearts = ["♡", "♥", "♡", "✦"];
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 900);
+  </script>
+
+</body>
+</html>
